@@ -11,6 +11,8 @@ import { ArtistCardComponent } from './components/artist-card/artist-card.compon
 import { TrackCardComponent } from './components/track-card/track-card.component';
 import { ListCardComponent } from './components/list-card/list-card.component';
 import { TrackFeaturesTabComponent } from './components/track-features-tab/track-features-tab.component';
+import { LoginComponent } from './pages/login/login.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { TrackFeaturesTabComponent } from './components/track-features-tab/track
     ArtistCardComponent,
     TrackCardComponent,
     ListCardComponent,
-    TrackFeaturesTabComponent
+    TrackFeaturesTabComponent,
+    LoginComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

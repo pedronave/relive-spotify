@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { SpotifyService } from './spotify.service';
 import { ReplaySubject, Observable } from 'rxjs';
+import { TopTracksService } from './top-tracks.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TrackFeaturesService {
 
-  constructor(private spotifyService: SpotifyService) { }
+  constructor(private spotifyService: SpotifyService, private tracksService: TopTracksService) { }
 
   private longTermTrackFeaturesLoaded = false;
   private longTermTrackFeatures: ReplaySubject<SpotifyApi.AudioFeaturesObject[]> = new ReplaySubject(1);
@@ -20,7 +21,7 @@ export class TrackFeaturesService {
 
   getLongTermTrackFeatures(): Observable<SpotifyApi.AudioFeaturesObject[]> {
     if (!this.longTermTrackFeaturesLoaded){
-      this.spotifyService.getLongTermTopTracks().subscribe( (tracks) => {
+      this.tracksService.getLongTermTopTracks().subscribe( (tracks) => {
         const trackIds = tracks.map(track => track.id);
 
         this.spotifyService.getApi().getAudioFeaturesForTracks(trackIds).then( (data) => {
@@ -35,7 +36,7 @@ export class TrackFeaturesService {
 
   getMediumTermTrackFeatures(): Observable<SpotifyApi.AudioFeaturesObject[]> {
     if (!this.mediumTermTrackFeaturesLoaded){
-      this.spotifyService.getMediumTermTopTracks().subscribe( (tracks) => {
+      this.tracksService.getMediumTermTopTracks().subscribe( (tracks) => {
         const trackIds = tracks.map(track => track.id);
 
         this.spotifyService.getApi().getAudioFeaturesForTracks(trackIds).then( (data) => {
@@ -50,7 +51,7 @@ export class TrackFeaturesService {
 
   getShortTermTrackFeatures(): Observable<SpotifyApi.AudioFeaturesObject[]> {
     if (!this.shortTermTrackFeaturesLoaded){
-      this.spotifyService.getShortTermTopTracks().subscribe( (tracks) => {
+      this.tracksService.getShortTermTopTracks().subscribe( (tracks) => {
         const trackIds = tracks.map(track => track.id);
 
         this.spotifyService.getApi().getAudioFeaturesForTracks(trackIds).then( (data) => {

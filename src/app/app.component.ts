@@ -9,13 +9,13 @@ import { SpotifyService } from './services/spotify.service';
 })
 export class AppComponent implements OnInit {
   title = 'records-spotify';
-
+  isLoggedIn;
   constructor(private spotify: SpotifyService) {
-
   }
 
   ngOnInit(): void {
     console.log(this.spotify.authUrl());
-    this.spotify.checkLocalAuth();
+    this.isLoggedIn = this.spotify.isLoggedIn;
+    // this.spotify.checkLocalAuth();
   }
 }

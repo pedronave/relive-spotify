@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SpotifyService } from 'src/app/services/spotify.service';
+import { TopArtistsService } from 'src/app/services/top-artists.service';
 
 @Component({
   selector: 'app-top-artists',
@@ -16,7 +16,7 @@ export class TopArtistsComponent implements OnInit {
 
   artistList: Observable<SpotifyApi.ArtistObjectFull[]>;
 
-  constructor(private spotify: SpotifyService) { }
+  constructor(private spotify: TopArtistsService) { }
 
   ngOnInit(): void {
     this.activateLongTermTab();

@@ -1,20 +1,23 @@
-<div class="px-4">
-  <p class="text-3xl my-3">Top Artists</p>
-  <div class="flex space-x-5 mb-2">
-    <div>
-      <button (click)="activateLongTermTab()" #longTermButton [ngClass]="activeTab === 0 ? buttonActiveClasses : buttonInactiveClasses">All time</button>
+<app-navbar></app-navbar>
+<div class="w-full sm:w-4/5 m-auto bg-white shadow min-h-screen mt-2">
+  <div class="px-4">
+    <p class="text-3xl my-3">Top Artists</p>
+    <div class="flex space-x-5 mb-2">
+      <div>
+        <button (click)="activateLongTermTab()" #longTermButton [ngClass]="activeTab === 0 ? buttonActiveClasses : buttonInactiveClasses">All time</button>
+      </div>
+      <div>
+        <button (click)="activateMediumTermTab()" #mediumTermButton [ngClass]="activeTab === 1 ? buttonActiveClasses : buttonInactiveClasses">Last 6 months</button>
+      </div>
+      <div>
+        <button (click)="activateShortTermTab()" #shortTermButton [ngClass]="activeTab === 2 ? buttonActiveClasses : buttonInactiveClasses">Last month</button>
+      </div>
     </div>
-    <div>
-      <button (click)="activateMediumTermTab()" #mediumTermButton [ngClass]="activeTab === 1 ? buttonActiveClasses : buttonInactiveClasses">Last 6 months</button>
+    <div class="divide-y divide-gray-300">
+      <div *ngFor="let artist of (artistList | async); let i = index" >
+        <app-artist-card [artist]="artist" [place]="i+1"></app-artist-card>
+      </div>
     </div>
-    <div>
-      <button (click)="activateShortTermTab()" #shortTermButton [ngClass]="activeTab === 2 ? buttonActiveClasses : buttonInactiveClasses">Last month</button>
-    </div>
+    
   </div>
-  <div class="divide-y divide-gray-300">
-    <div *ngFor="let artist of (artistList | async); let i = index" >
-      <app-artist-card [artist]="artist" [place]="i+1"></app-artist-card>
-    </div>
-  </div>
-  
 </div>

@@ -1,8 +1,6 @@
-
-
 import { Component, OnInit } from '@angular/core';
-import { SpotifyService } from 'src/app/services/spotify.service';
 import { Observable } from 'rxjs';
+import { TopTracksService } from 'src/app/services/top-tracks.service';
 
 @Component({
   selector: 'app-top-tracks',
@@ -13,12 +11,12 @@ export class TopTracksComponent implements OnInit {
   buttonActiveClasses = 'text-xl border-b-4 border-black';
   buttonInactiveClasses = 'text-xl text-gray-600 hover:text-black';
 
-  // 0 long term, 1 medium term, 2 short term, 3 features 
+  // 0 long term, 1 medium term, 2 short term, 3 features
   activeTab = 0;
 
   tracksList: Observable<SpotifyApi.TrackObjectFull[]>;
 
-  constructor(private spotify: SpotifyService) { }
+  constructor(private spotify: TopTracksService) { }
 
   ngOnInit(): void {
     this.activateLongTermTab();
