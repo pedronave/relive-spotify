@@ -1,0 +1,25 @@
+<div class="px-4">
+  <p class="text-3xl my-3">Top Tracks</p>
+  <div class="flex space-x-5 mb-2">
+    <div>
+      <button (click)="activateLongTermTab()" #longTermButton [ngClass]="activeTab === 0 ? buttonActiveClasses : buttonInactiveClasses">All time</button>
+    </div>
+    <div>
+      <button (click)="activateMediumTermTab()" #mediumTermButton [ngClass]="activeTab === 1 ? buttonActiveClasses : buttonInactiveClasses">Last 6 months</button>
+    </div>
+    <div>
+      <button (click)="activateShortTermTab()" #shortTermButton [ngClass]="activeTab === 2 ? buttonActiveClasses : buttonInactiveClasses">Last month</button>
+    </div>
+    <div>
+      <button (click)="activateFeaturesTab()" #featuresButton [ngClass]="activeTab === 3 ? buttonActiveClasses : buttonInactiveClasses">Track Features</button>
+    </div>
+  </div>
+  <div *ngIf="activeTab <= 2"class="divide-y divide-gray-300">
+    <div *ngFor="let track of (tracksList | async); let i = index" >
+      <app-track-card [track]="track" [place]="i+1"></app-track-card>
+    </div>
+  </div>
+  <div *ngIf="activeTab == 3">
+    <app-track-features-tab></app-track-features-tab>
+  </div>
+</div>
