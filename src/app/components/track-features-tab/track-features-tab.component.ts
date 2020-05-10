@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TrackFeaturesService } from 'src/app/services/track-features.service';
+import { ChartType, ChartDataSets, RadialChartOptions } from 'chart.js';
+import { Label } from 'ng2-charts';
 
 @Component({
   selector: 'app-track-features-tab',
@@ -7,47 +9,20 @@ import { TrackFeaturesService } from 'src/app/services/track-features.service';
   styleUrls: ['./track-features-tab.component.css']
 })
 export class TrackFeaturesTabComponent implements OnInit {
-  longTermData = [0, 0, 0, 0, 0, 0, 0];
-  mediumTermData = [0, 0, 0, 0, 0, 0, 0];
-  shortTermData = [0, 0, 0, 0, 0, 0, 0];
-  data: any;
+
+  public radarChartOptions: RadialChartOptions = {
+    responsive: true,
+  };
+  public radarChartLabels: Label[] = ['Acousticness', 'Danceability', 'Energy', 'Instrumentalness', 'Liveness', 'Speechiness', 'Valence'];
+
+  public radarChartData: ChartDataSets[] = [
+    { data: [0, 0, 0, 0, 0, 0, 0], label: 'All time' },
+    { data: [0, 0, 0, 0, 0, 0, 0], label: 'Last six months' },
+    { data: [0, 0, 0, 0, 0, 0, 0], label: 'Last month' }
+  ];
+  public radarChartType: ChartType = 'radar';
 
   constructor(private features: TrackFeaturesService) {
-    this.data = {
-      labels: ['Acousticness', 'Danceability', 'Energy', 'Instrumentalness', 'Liveness', 'Speechiness', 'Valence'],
-      datasets: [
-          {
-              label: 'All time',
-              backgroundColor: 'rgba(34,204,0,0.2)',
-              borderColor: 'rgba(34,204,0,1)',
-              pointBackgroundColor: 'rgba(34,204,0,1)',
-              pointBorderColor: '#fff',
-              pointHoverBackgroundColor: '#fff',
-              pointHoverBorderColor: 'rgba(34,204,0,1)',
-              data: [0, 0, 0, 0, 0, 0, 0]
-          },
-          {
-              label: 'Last six months',
-              backgroundColor: 'rgba(255,99,132,0.2)',
-              borderColor: 'rgba(255,99,132,1)',
-              pointBackgroundColor: 'rgba(255,99,132,1)',
-              pointBorderColor: '#fff',
-              pointHoverBackgroundColor: '#fff',
-              pointHoverBorderColor: 'rgba(255,99,132,1)',
-              data: [0, 0, 0, 0, 0, 0, 0]
-          },
-          {
-            label: 'Last month',
-            backgroundColor: 'rgba(77,166,255,0.2)',
-            borderColor: 'rgba(77,166,255,1)',
-            pointBackgroundColor: 'rgba(77,166,255,1)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(77,166,255,1)',
-            data: [0, 0, 0, 0, 0, 0, 0]
-        }
-      ]
-    };
    }
 
   ngOnInit(): void {
@@ -60,8 +35,8 @@ export class TrackFeaturesTabComponent implements OnInit {
       longTerm[4] = data.map(f => f.liveness).reduce((acc, val, i) => acc + (val - acc) / ( i + 1), 0);
       longTerm[5] = data.map(f => f.speechiness).reduce((acc, val, i) => acc + (val - acc) / ( i + 1), 0);
       longTerm[6] = data.map(f => f.valence).reduce((acc, val, i) => acc + (val - acc) / ( i + 1), 0);
-      this.data.datasets[0].data = longTerm;
-      this.data = {...this.data};
+      this.radarChartData[0].data = longTerm;
+      this.radarChartData = [...this.radarChartData];
     });
     this.features.getMediumTermTrackFeatures().subscribe(data => {
       const mediumTerm = [0, 0, 0, 0, 0, 0, 0];
@@ -72,8 +47,8 @@ export class TrackFeaturesTabComponent implements OnInit {
       mediumTerm[4] = data.map(f => f.liveness).reduce((acc, val, i) => acc + (val - acc) / ( i + 1), 0);
       mediumTerm[5] = data.map(f => f.speechiness).reduce((acc, val, i) => acc + (val - acc) / ( i + 1), 0);
       mediumTerm[6] = data.map(f => f.valence).reduce((acc, val, i) => acc + (val - acc) / ( i + 1), 0);
-      this.data.datasets[1].data = mediumTerm;
-      this.data = {...this.data};
+      this.radarChartData[1].data = mediumTerm;
+      this.radarChartData = [...this.radarChartData];
     });
     this.features.getShortTermTrackFeatures().subscribe(data => {
       const shortTerm = [0, 0, 0, 0, 0, 0, 0];
@@ -84,8 +59,8 @@ export class TrackFeaturesTabComponent implements OnInit {
       shortTerm[4] = data.map(f => f.liveness).reduce((acc, val, i) => acc + (val - acc) / ( i + 1), 0);
       shortTerm[5] = data.map(f => f.speechiness).reduce((acc, val, i) => acc + (val - acc) / ( i + 1), 0);
       shortTerm[6] = data.map(f => f.valence).reduce((acc, val, i) => acc + (val - acc) / ( i + 1), 0);
-      this.data.datasets[2].data = shortTerm;
-      this.data = {...this.data};
+      this.radarChartData[2].data = shortTerm;
+      this.radarChartData = [...this.radarChartData];
     });
   }
 
