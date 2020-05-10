@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "build-tailwind": "ngtw build --purge",
     "prestart": "ngtw build",
     "start": "ng serve & ngtw watch",
-    "build": "ngtw build --purge && ng build",
+    "build": "npm run build-tailwind && ng build --prod --aot",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -45,6 +46,7 @@
     "karma-coverage-istanbul-reporter": "~2.1.0",
     "karma-jasmine": "~3.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
+    "ng-tailwindcss": "^2.2.1",
     "protractor": "~5.4.3",
     "tailwindcss": "^1.4.6",
     "ts-node": "~8.3.0",
