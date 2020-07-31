@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "records-spotify": {
+    "relive-spotify": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/records-spotify",
+            "outputPath": "dist/relive-spotify",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -25,7 +25,8 @@
               "src/_redirects"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/generated-tailwind.css"
             ],
             "scripts": [
               "node_modules/chart.js/dist/Chart.js"
@@ -65,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "records-spotify:build"
+            "browserTarget": "relive-spotify:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "records-spotify:build:production"
+              "browserTarget": "relive-spotify:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "records-spotify:build"
+            "browserTarget": "relive-spotify:build"
           }
         },
         "test": {
@@ -92,7 +93,8 @@
               "src/_redirects"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/generated-tailwind.css"
             ],
             "scripts": []
           }
@@ -114,15 +116,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "records-spotify:serve"
+            "devServerTarget": "relive-spotify:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "records-spotify:serve:production"
+              "devServerTarget": "relive-spotify:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "records-spotify"
+  "defaultProject": "relive-spotify"
 }

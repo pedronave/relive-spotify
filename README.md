@@ -1,27 +1,28 @@
-# RecordsSpotify
+# Relive Spotify
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
+Relive Spotify is a web app that lets users analyse their Spotify history. It shows the top artists and tracks of all time, the last 6 months and the last month. It also allows for a comparison of the track features from these three periods.
 
-## Development server
+## Setting up the app
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+First clone the app and run `npm install` in the root directory of the project.
 
-## Code scaffolding
+In order to run the app you need to create a Spotify app in the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/). 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+On the application page you also need to configure the Redirect URIs under "Edit Settings". The redirect URIs will be the domain where the app is running + "/callback" at the end. For the developement environment, the default redirect URI will be `http://localhost:4200/callback`
 
-## Build
+Under the directory `src/environments` there will be two files for configuring the app, `environment.ts` for the development environment and `environment.prod.ts`. In these you will need the Client ID for the Spotify app (which you can find in the developer dashboard) and the redirect URI that you added before to the developer dashboard.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Running the app
 
-## Running unit tests
+There are two options for running the app.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+For development purposes, you can run the command `npm run start`. This will build the tailwind CSS and watch for changes, as well as serve the Angular app. This will use the `environment.ts` file.
 
-## Running end-to-end tests
+For building the app, you can run the command `npm run build`. This will build the tailwind CSS and build the Angular app using production settings. This will use the `environment.prod.ts` file.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+When running the app, ngtw will generate the file `src/generated-tailwind.css` which will contain the used Tailwind CSS classes
 
-## Further help
+## What's left to do
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+The main thing to be worked on now will be testing.
+Eventually, the design and the stats shown could be improved.
