@@ -22,7 +22,8 @@ export class TopTracksService {
         (data) => {
           this.longTermTopTracks.next(data.items);
           this.longTermTopTracksLoaded = true;
-        }
+        },
+        (err) => this.spotifyService.checkResponseError(err)
       );
     }
 
@@ -35,7 +36,8 @@ export class TopTracksService {
         (data) => {
           this.mediumTermTopTracks.next(data.items);
           this.mediumTermTopTracksLoaded = true;
-        }
+        },
+        (err) => this.spotifyService.checkResponseError(err)
       );
     }
 
@@ -48,7 +50,8 @@ export class TopTracksService {
         (data) => {
           this.shortTermTopTracks.next(data.items);
           this.shortTermTopTracksLoaded = true;
-        }
+        },
+        (err) => this.spotifyService.checkResponseError(err)
       );
     }
 
