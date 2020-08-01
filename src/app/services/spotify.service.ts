@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import SpotifyWebApi from 'spotify-web-api-js';
-import { Observable, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject, throwError } from 'rxjs';
+import { catchError  } from 'rxjs/operators';
+
+
 import { environment } from './../../environments/environment';
 import { AuthCallback, AuthState } from '../models/auth-callback.model';
 
@@ -15,7 +19,7 @@ export class SpotifyService {
   private isLoggedInSubject: ReplaySubject<boolean> = new ReplaySubject(1);
   isLoggedIn: Observable<boolean> = this.isLoggedInSubject.asObservable();
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   authUrl() {
     const scopes = ['user-top-read', 'user-read-recently-played'];
@@ -71,6 +75,18 @@ export class SpotifyService {
     }else {
       this.isLoggedInSubject.next(false);
       return false;
+    }
+  }
+
+  logout() {
+    localStorage.removeItem('spotify_auth');
+    this.router.navigateByUrl('/login');
+  }
+
+  checkResponseError(err) {
+    // If a 401 is returned the token may have expired. Clear the token and send user back to login page;
+    if (err.status === 401) {
+        this.logout();
     }
   }
 }

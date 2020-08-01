@@ -24,10 +24,13 @@ export class TrackFeaturesService {
       this.tracksService.getLongTermTopTracks().subscribe( (tracks) => {
         const trackIds = tracks.map(track => track.id);
 
-        this.spotifyService.getApi().getAudioFeaturesForTracks(trackIds).then( (data) => {
-          this.longTermTrackFeatures.next(data.audio_features);
-          this.longTermTrackFeaturesLoaded = true;
-        });
+        this.spotifyService.getApi().getAudioFeaturesForTracks(trackIds).then(
+          (data) => {
+            this.longTermTrackFeatures.next(data.audio_features);
+            this.longTermTrackFeaturesLoaded = true;
+          },
+          (err) => this.spotifyService.checkResponseError(err)
+        );
       });
     }
 
@@ -39,10 +42,13 @@ export class TrackFeaturesService {
       this.tracksService.getMediumTermTopTracks().subscribe( (tracks) => {
         const trackIds = tracks.map(track => track.id);
 
-        this.spotifyService.getApi().getAudioFeaturesForTracks(trackIds).then( (data) => {
-          this.mediumTermTrackFeatures.next(data.audio_features);
-          this.mediumTermTrackFeaturesLoaded = true;
-        });
+        this.spotifyService.getApi().getAudioFeaturesForTracks(trackIds).then(
+          (data) => {
+            this.mediumTermTrackFeatures.next(data.audio_features);
+            this.mediumTermTrackFeaturesLoaded = true;
+          },
+          (err) => this.spotifyService.checkResponseError(err)
+        );
       });
     }
 
@@ -54,10 +60,13 @@ export class TrackFeaturesService {
       this.tracksService.getShortTermTopTracks().subscribe( (tracks) => {
         const trackIds = tracks.map(track => track.id);
 
-        this.spotifyService.getApi().getAudioFeaturesForTracks(trackIds).then( (data) => {
-          this.shortTermTrackFeatures.next(data.audio_features);
-          this.shortTermTrackFeaturesLoaded = true;
-        });
+        this.spotifyService.getApi().getAudioFeaturesForTracks(trackIds).then(
+          (data) => {
+            this.shortTermTrackFeatures.next(data.audio_features);
+            this.shortTermTrackFeaturesLoaded = true;
+          },
+          (err) => this.spotifyService.checkResponseError(err)
+        );
       });
     }
 

@@ -15,7 +15,8 @@ export class SpotifyAuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      console.log(state.url);
+      // Checks if the token saved in local storage has expired or not. If it has, user is redirected to the login page.
+      // If the local storage expiration value has been modified, user is redirected to login page if a 401 request is received by the spotify client.
       const tokenState = this.spotify.checkLocalAuth();
       if (tokenState) {
         return true;

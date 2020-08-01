@@ -22,7 +22,8 @@ export class TopArtistsService {
         (data) => {
           this.longTermTopArtists.next(data.items);
           this.longTermTopArtistsLoaded = true;
-        }
+        },
+        (err) => this.spotifyService.checkResponseError(err)
       );
     }
 
@@ -35,7 +36,8 @@ export class TopArtistsService {
         (data) => {
           this.mediumTermTopArtists.next(data.items);
           this.mediumTermTopArtistsLoaded = true;
-        }
+        },
+        (err) => this.spotifyService.checkResponseError(err)
       );
     }
 
@@ -48,7 +50,8 @@ export class TopArtistsService {
         (data) => {
           this.shortTermTopArtists.next(data.items);
           this.shortTermTopArtistsLoaded = true;
-        }
+        },
+        (err) => this.spotifyService.checkResponseError(err)
       );
     }
 
