@@ -39,4 +39,15 @@ export class TopArtistsComponent implements OnInit {
     this.artistList = this.spotify.getShortTermTopArtists();
     this.activeTab = 2;
   }
+
+  get currentTabName(): string {
+    switch (this.activeTab) {
+      case 0:
+        return 'All time';
+      case 1:
+        return 'Last 6 Months';
+      case 2:
+        return 'Last Month';
+    }
+  }
 }

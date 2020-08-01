@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div class="w-full sm:w-4/5 m-auto bg-white shadow min-h-screen mt-2">
+<div class="w-full sm:w-4/5 m-auto bg-white shadow min-h-screen mt-2" aria-label="Top Artists">
   <div class="px-4">
     <p class="text-3xl my-3">Top Artists</p>
     <div class="flex space-x-5 mb-2">
@@ -13,7 +13,7 @@
         <button (click)="activateShortTermTab()" #shortTermButton [ngClass]="activeTab === 2 ? buttonActiveClasses : buttonInactiveClasses">Last month</button>
       </div>
     </div>
-    <div class="divide-y divide-gray-300">
+    <div class="divide-y divide-gray-300" title="Top artists of {{currentTabName}}">
       <div *ngFor="let artist of (artistList | async); let i = index" >
         <app-artist-card [artist]="artist" [place]="i+1"></app-artist-card>
       </div>
