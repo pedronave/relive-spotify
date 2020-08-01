@@ -43,4 +43,17 @@ export class TopTracksComponent implements OnInit {
   activateFeaturesTab() {
     this.activeTab = 3;
   }
+
+  get currentTabName(): string {
+    switch (this.activeTab) {
+      case 0:
+        return 'Top tracks of all time';
+      case 1:
+        return 'Top tracks of last 6 Months';
+      case 2:
+        return 'Top tracks of last Month';
+      case 3:
+        return 'Track features';
+    }
+  }
 }

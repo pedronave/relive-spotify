@@ -1,13 +1,13 @@
-<a [href]="sanitizedURI">
+<a [href]="sanitizedURI" title="Open {{title}} on Spotify">
   <div class="h-32 py-5">
     <div class="flex flex-row space-x-5">
       <!-- place -->
       <div class="flex flex-col justify-center">
-        <p class="font-semibold text-gray-700 text-base">{{place}}</p>
+        <p class="font-semibold text-gray-700 text-base" aria-label="Place">{{place}}</p>
       </div>
       <!-- picture -->
       <div>
-        <img class="h-20 w-20 object-cover rounded-lg" [src]="imgSrc">
+        <img class="h-20 w-20 object-cover rounded-lg" [src]="imgSrc" alt="Image of {{title}}">
       </div>
       <!-- artist name and genre -->
       <div class="flex flex-col justify-center">

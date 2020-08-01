@@ -16,12 +16,12 @@
         <button (click)="activateFeaturesTab()" #featuresButton [ngClass]="activeTab === 3 ? buttonActiveClasses : buttonInactiveClasses">Track Features</button>
       </div>
     </div>
-    <div *ngIf="activeTab <= 2"class="divide-y divide-gray-300">
-      <div *ngFor="let track of (tracksList | async); let i = index" >
+    <div *ngIf="activeTab <= 2"class="divide-y divide-gray-300" [title]="currentTabName">
+      <div *ngFor="let track of (tracksList | async); let i = index" title="Track in place number {{i+1}}">
         <app-track-card [track]="track" [place]="i+1"></app-track-card>
       </div>
     </div>
-    <div *ngIf="activeTab == 3">
+    <div *ngIf="activeTab == 3" [title]="currentTabName">
       <app-track-features-tab></app-track-features-tab>
     </div>
   </div>
